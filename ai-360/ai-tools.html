@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AI Tools Landscape - AI 360</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%23001424'/><text x='20' y='27' font-size='16' text-anchor='middle' fill='%230078d4' font-family='system-ui' font-weight='900'>AI</text></svg>"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── AZURE PORTAL THEME ─────────────────────────────── */
+:root{
+  --azure-blue:#0078d4; --azure-blue-dark:#005a9e; --azure-blue-light:#50e6ff;
+  --navy:#001424; --navy2:#002050; --navy3:#003666;
+  --blue:#0078d4; --blue2:#106ebe; --blue-lt:#e5f1fb;
+  --teal:#00a4ef; --teal2:#008ad7; --teal-lt:#cfe4fa;
+  --green:#107c10; --green-lt:#dff6dd;
+  --amber:#ffaa44; --amber-lt:#fff8e1;
+  --orange:#ca5010; --red:#d13438;
+  --purple:#5c2d91; --purple-lt:#e5dfec;
+  --aws:#ff9900; --aws-dk:#cc7a00; --aws-lt:#fff4e0;
+  --white:#fff; --off:#faf9f8; --off2:#f3f2f1;
+  --border:#e1dfdd; --text:#201f1e; --muted:#605e5c; --faint:#8a8886;
+  --font:'Segoe UI','Segoe UI Web',system-ui,-apple-system,sans-serif; --mono:'Consolas','Courier New',monospace;
+  --r2:2px; --r4:4px; --r8:8px;
+  --sh1:0 1.6px 3.6px 0 rgba(0,0,0,.132),0 0.3px 0.9px 0 rgba(0,0,0,.108);
+  --sh2:0 3.2px 7.2px 0 rgba(0,0,0,.132),0 0.6px 1.8px 0 rgba(0,0,0,.108);
+  --sh3:0 6.4px 14.4px 0 rgba(0,0,0,.132),0 1.2px 3.6px 0 rgba(0,0,0,.108);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--text);background:var(--off);overflow-x:hidden;line-height:1.6}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--azure-blue-dark);text-decoration:underline}
+
+/* Header */
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;box-shadow:var(--sh1)}
+.header-inner{max-width:1360px;margin:0 auto;padding:0 28px;height:60px;display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--navy),var(--navy3));border-radius:var(--r4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-name{font-size:16px;font-weight:700;color:var(--navy)}
+.logo-name span{color:var(--blue)}
+.logo-sub{font-size:9px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.07em}
+
+nav{flex:1}
+nav ul{list-style:none;display:flex;align-items:center;gap:2px}
+.nav-link{display:block;padding:6px 12px;font-size:13px;font-weight:500;color:var(--muted);border-radius:var(--r2);transition:all .1s}
+.nav-link:hover{background:var(--off);color:var(--text);text-decoration:none}
+.nav-link.active{background:var(--blue-lt);color:var(--blue);font-weight:600}
+
+.hdr-right{display:flex;gap:9px;align-items:center}
+.hdr-ghost{padding:6px 14px;border-radius:var(--r2);font-size:12.5px;font-weight:600;color:var(--blue);border:1px solid var(--border);transition:all .1s}
+.hdr-ghost:hover{border-color:var(--blue);background:var(--blue-lt);text-decoration:none}
+
+/* Page Hero */
+.page-hero{background:linear-gradient(135deg,#0078d4 0%,#005a9e 100%);padding:60px 28px;color:#fff}
+.page-hero h1{font-size:32px;font-weight:700;margin-bottom:12px;letter-spacing:-.5px}
+.page-hero p{font-size:16px;color:rgba(255,255,255,.8);max-width:700px}
+
+/* Main content */
+.wrap{max-width:1360px;margin:0 auto;padding:0 28px}
+section{padding:60px 0}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:var(--sh3);transform:translateY(-2px)}
+
+/* Tool Cards */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:40px}
+.tool-card{overflow:hidden}
+.tool-top{padding:17px 19px 13px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start}
+.tool-ico{width:42px;height:42px;border-radius:var(--r4);display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.tool-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.tool-maker{font-size:11.5px;color:var(--faint)}
+.tool-body{padding:13px 19px 17px}
+.tool-desc{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:11px}
+.tool-best{font-size:11.5px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.tool-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.tool-tag{font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:99px}
+.tool-foot{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--off2);font-size:11.5px;color:var(--muted)}
+.tool-link{font-size:12px;font-weight:700;color:var(--blue)}
+.tool-link:hover{text-decoration:underline}
+
+/* When to use grid */
+.when-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.when-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r4);padding:15px;display:flex;gap:10px}
+.when-ico{font-size:19px;flex-shrink:0;margin-top:2px}
+.when-body strong{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.when-body p{font-size:11.5px;color:var(--muted);line-height:1.5}
+.when-pick{font-size:11.5px;font-weight:700;color:var(--blue);margin-top:5px;display:block}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="./" class="logo">
+      <div class="logo-mark">AI</div>
+      <div class="logo-text">
+        <div class="logo-name">AI <span>360</span></div>
+        <div class="logo-sub">Learning Hub</div>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="./" class="nav-link">Overview</a></li>
+        <li><a href="ai-tools.html" class="nav-link active">AI Tools</a></li>
+        <li><a href="#" class="nav-link">Microsoft</a></li>
+        <li><a href="#" class="nav-link">AWS</a></li>
+        <li><a href="#" class="nav-link">Use Cases</a></li>
+        <li><a href="#" class="nav-link">Certifications</a></li>
+        <li><a href="#" class="nav-link">Roadmap</a></li>
+      </ul>
+    </nav>
+    <div class="hdr-right">
+      <a href="https://copilotstudio.microsoft.com" target="_blank" rel="noopener" class="hdr-ghost">Copilot Studio ↗</a>
+      <a href="https://ai.azure.com" target="_blank" rel="noopener" class="hdr-ghost">AI Foundry ↗</a>
+      <a href="https://aws.amazon.com/bedrock" target="_blank" rel="noopener" class="hdr-ghost" style="color:#ff9900;border-color:#ff9900">AWS Bedrock ↗</a>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <h1>AI Tools Landscape · 2026</h1>
+    <p>The major AI tools — and when to use each</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p style="font-size:15px;color:var(--muted);margin-bottom:40px;max-width:900px">Before choosing a platform, understand what's available today. An honest side-by-side of the six leading AI tools, their strengths, and the right use case for each.</p>
+    
+    <div class="tools-grid">
+      <!-- ChatGPT -->
+      <div class="card tool-card">
+        <div class="tool-top"><div class="tool-ico" style="background:#10a37f18">🤖</div><div><div class="tool-name">ChatGPT</div><div class="tool-maker">OpenAI · GPT-4o / o3</div></div></div>
+        <div class="tool-body">
+          <p class="tool-desc">The most widely used AI assistant globally. Best all-round capability — writing, coding, reasoning, image generation, voice, data analysis. Largest ecosystem of custom GPTs and integrations.</p>
+          <div class="tool-best">🎯 Best for</div>
+          <div class="tool-tags"><span class="tool-tag" style="background:#d1fae5;color:#065f46">All-round</span><span class="tool-tag" style="background:#dbeafe;color:#1d4ed8">Creative writing</span><span class="tool-tag" style="background:#ede9fe;color:#5b21b6">Image gen</span></div>
+          <div class="tool-foot"><span>Free / $20 mo (Plus)</span><a href="https://chatgpt.com" target="_blank" rel="noopener" class="tool-link">Try it →</a></div>
+        </div>
+      </div>
+
+      <!-- Claude -->
+      <div class="card tool-card">
+        <div class="tool-top"><div class="tool-ico" style="background:#d97d4418">✦</div><div><div class="tool-name">Claude</div><div class="tool-maker">Anthropic · Opus 4 / Sonnet 4</div></div></div>
+        <div class="tool-body">
+          <p class="tool-desc">Leading model for nuanced writing, long-document analysis, and coding benchmarks. 200K context window. Claude Code excels at agentic terminal-based development.</p>
+          <div class="tool-best">🎯 Best for</div>
+          <div class="tool-tags"><span class="tool-tag" style="background:#d1fae5;color:#065f46">Long docs</span><span class="tool-tag" style="background:#dbeafe;color:#1d4ed8">Precise writing</span><span class="tool-tag" style="background:#ede9fe;color:#5b21b6">Agentic coding</span></div>
+          <div class="tool-foot"><span>Free / $20 mo (Pro)</span><a href="https://claude.ai" target="_blank" rel="noopener" class="tool-link">Try it →</a></div>
+        </div>
+      </div>
+
+      <!-- Google Gemini -->
+      <div class="card tool-card">
+        <div class="tool-top"><div class="tool-ico" style="background:#4285f418">💎</div><div><div class="tool-name">Google Gemini</div><div class="tool-maker">Google · Gemini 2.5 Pro / Flash</div></div></div>
+        <div class="tool-body">
+          <p class="tool-desc">Deeply integrated with Google Workspace — Docs, Gmail, Sheets, Meet. 1M token context window. Best for multilingual tasks and teams already running on Google infrastructure.</p>
+          <div class="tool-best">🎯 Best for</div>
+          <div class="tool-tags"><span class="tool-tag" style="background:#d1fae5;color:#065f46">Google Workspace</span><span class="tool-tag" style="background:#dbeafe;color:#1d4ed8">Multilingual</span><span class="tool-tag" style="background:#ede9fe;color:#5b21b6">1M context</span></div>
+          <div class="tool-foot"><span>Free / $20 mo (Advanced)</span><a href="https://gemini.google.com" target="_blank" rel="noopener" class="tool-link">Try it →</a></div>
+        </div>
+      </div>
+
+      <!-- Microsoft Copilot -->
+      <div class="card tool-card">
+        <div class="tool-top"><div class="tool-ico" style="background:#0078d418">🪟</div><div><div class="tool-name">Microsoft Copilot</div><div class="tool-maker">Microsoft · GPT-4o + M365 native</div></div></div>
+        <div class="tool-body">
+          <p class="tool-desc">AI embedded in Word, Excel, PowerPoint, Outlook, and Teams. Only tool with direct access to your actual files, emails, and calendar. Copilot Studio extends it with custom agents.</p>
+          <div class="tool-best">🎯 Best for</div>
+          <div class="tool-tags"><span class="tool-tag" style="background:#d1fae5;color:#065f46">Microsoft 365</span><span class="tool-tag" style="background:#dbeafe;color:#1d4ed8">Enterprise</span><span class="tool-tag" style="background:#ede9fe;color:#5b21b6">Custom agents</span></div>
+          <div class="tool-foot"><span>Free (basic) / $30/user/mo</span><a href="https://copilot.microsoft.com" target="_blank" rel="noopener" class="tool-link">Try it →</a></div>
+        </div>
+      </div>
+
+      <!-- Perplexity -->
+      <div class="card tool-card">
+        <div class="tool-top"><div class="tool-ico" style="background:#20b2aa18">🔍</div><div><div class="tool-name">Perplexity</div><div class="tool-maker">Perplexity AI · Real-time web</div></div></div>
+        <div class="tool-body">
+          <p class="tool-desc">A research engine, not a chatbot. Every answer comes with cited sources from live web data. Best when you need verifiable, up-to-date information fast. Not designed for writing or coding.</p>
+          <div class="tool-best">🎯 Best for</div>
+          <div class="tool-tags"><span class="tool-tag" style="background:#d1fae5;color:#065f46">Research</span><span class="tool-tag" style="background:#dbeafe;color:#1d4ed8">Fact-checking</span><span class="tool-tag" style="background:#ede9fe;color:#5b21b6">Cited answers</span></div>
+          <div class="tool-foot"><span>Free / $20 mo (Pro)</span><a href="https://perplexity.ai" target="_blank" rel="noopener" class="tool-link">Try it →</a></div>
+        </div>
+      </div>
+
+      <!-- GitHub Copilot -->
+      <div class="card tool-card">
+        <div class="tool-top"><div class="tool-ico" style="background:#6e40c918">💻</div><div><div class="tool-name">GitHub Copilot</div><div class="tool-maker">GitHub / Microsoft · Developer AI</div></div></div>
+        <div class="tool-body">
+          <p class="tool-desc">The developer's AI companion inside VS Code, JetBrains, and the terminal. Writes, explains, and debugs code inline. Copilot Workspace enables full agentic feature development from issue to PR.</p>
+          <div class="tool-best">🎯 Best for</div>
+          <div class="tool-tags"><span class="tool-tag" style="background:#d1fae5;color:#065f46">Code completion</span><span class="tool-tag" style="background:#dbeafe;color:#1d4ed8">Code review</span><span class="tool-tag" style="background:#ede9fe;color:#5b21b6">Agentic dev</span></div>
+          <div class="tool-foot"><span>Free tier / $10 mo</span><a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="tool-link">Try it →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px">
+      <h3 style="font-size:20px;font-weight:600;color:var(--navy);margin-bottom:20px">When to use which AI tool</h3>
+      <div class="when-grid">
+        <div class="when-item"><span class="when-ico">✍️</span><div class="when-body"><strong>Writing & long documents</strong><p>Nuanced prose, editing, or analysis of large documents?</p><span class="when-pick">→ Use Claude</span></div></div>
+        <div class="when-item"><span class="when-ico">💻</span><div class="when-body"><strong>Coding & development</strong><p>Code completion, reviews, or agentic feature building?</p><span class="when-pick">→ GitHub Copilot + Claude Code</span></div></div>
+        <div class="when-item"><span class="when-ico">🔍</span><div class="when-body"><strong>Research & fact-checking</strong><p>Need current, cited, verifiable answers?</p><span class="when-pick">→ Use Perplexity</span></div></div>
+        <div class="when-item"><span class="when-ico">📊</span><div class="when-body"><strong>Microsoft 365 productivity</strong><p>Working in Word, Excel, Outlook, Teams daily?</p><span class="when-pick">→ Use Microsoft Copilot</span></div></div>
+        <div class="when-item"><span class="when-ico">🏢</span><div class="when-body"><strong>Building enterprise agents (MS)</strong><p>Custom no-code agent on Microsoft infrastructure?</p><span class="when-pick">→ Copilot Studio (see MS track)</span></div></div>
+        <div class="when-item"><span class="when-ico">🟠</span><div class="when-body"><strong>Building AI apps on AWS</strong><p>Foundation models, RAG, agents on AWS infrastructure?</p><span class="when-pick">→ Amazon Bedrock (see AWS track)</span></div></div>
+        <div class="when-item"><span class="when-ico">🎨</span><div class="when-body"><strong>All-round daily tasks</strong><p>General productivity, image generation, voice, custom GPTs?</p><span class="when-pick">→ Use ChatGPT Plus</span></div></div>
+        <div class="when-item"><span class="when-ico">⚙️</span><div class="when-body"><strong>Enterprise AI engineering</strong><p>Production AI with fine-tuned models and vector search?</p><span class="when-pick">→ Azure AI Foundry or AWS Bedrock</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
