@@ -17,12 +17,18 @@
     },
     {
       "route": "/",
-      "redirect": "/ai-360",
-      "statusCode": 301
+      "redirect": "/ai-360/login.html",
+      "statusCode": 302
     },
     {
       "route": "/ai-360",
+      "redirect": "/ai-360/login.html",
+      "statusCode": 302
+    },
+    {
+      "route": "/ai-360/index.html",
       "serve": "/ai-360/index.html",
+      "allowedRoles": ["authenticated"],
       "statusCode": 200
     }
   ],
@@ -54,6 +60,10 @@
     }
   },
   "responseOverrides": {
+    "401": {
+      "redirect": "/ai-360/login.html",
+      "statusCode": 302
+    },
     "404": {
       "rewrite": "/ai-360/index.html",
       "statusCode": 200
