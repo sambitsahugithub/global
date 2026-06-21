@@ -2,11 +2,16 @@
   "routes": [
     {
       "route": "/",
+      "redirect": "/ai-360",
+      "statusCode": 301
+    },
+    {
+      "route": "/ai-360",
       "serve": "/index.html",
       "statusCode": 200
     },
     {
-      "route": "/*",
+      "route": "/ai-360/*",
       "serve": "/index.html",
       "statusCode": 200
     }
