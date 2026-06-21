@@ -568,6 +568,40 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
 .g-mode-card .tag{margin-top:7px}
 .g-tip-box{background:var(--blue-lt);border:1px solid #bfdbfe;border-radius:var(--r8);padding:12px 14px;font-size:13px;color:#1e3a8a;line-height:1.6;margin-bottom:16px}
 .g-tip-box strong{font-weight:700}
+
+/* ── USE CASE LIBRARY ─── */
+.ucl-filter-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+.ucl-filter-row .ucl-label{font-size:12px;font-weight:700;color:var(--muted);align-self:center;margin-right:4px}
+.ucl-btn{padding:6px 14px;border-radius:99px;border:1.5px solid var(--border);font-size:12.5px;font-weight:700;color:var(--muted);background:var(--white);cursor:pointer;transition:all .15s;font-family:inherit}
+.ucl-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.ucl-btn.ucl-active{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.ucl-btn[data-persona="sales"].ucl-active{border-color:#0ea5e9;color:#0c4a6e;background:#e0f2fe}
+.ucl-btn[data-persona="contracts"].ucl-active{border-color:#f59e0b;color:#78350f;background:#fef3c7}
+.ucl-btn[data-persona="pmo"].ucl-active{border-color:#10b981;color:#064e3b;background:#d1fae5}
+.ucl-btn[data-persona="delivery-tech"].ucl-active{border-color:#8b5cf6;color:#3b0764;background:#ede9fe}
+.ucl-btn[data-persona="delivery-func"].ucl-active{border-color:#ec4899;color:#500724;background:#fce7f3}
+.ucl-btn[data-persona="leadership"].ucl-active{border-color:#6366f1;color:#1e1b4b;background:#eef2ff}
+.ucl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.ucl-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden;transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+.ucl-card:hover{box-shadow:var(--sh3);transform:translateY(-2px)}
+.ucl-card.ucl-hidden{display:none}
+.ucl-card-top{padding:16px 18px 14px;border-bottom:1px solid var(--off2);display:flex;gap:12px;align-items:flex-start}
+.ucl-icon{width:40px;height:40px;border-radius:var(--r8);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.ucl-card-title{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.ucl-persona-tag{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:99px}
+.ucl-card-body{padding:14px 18px;flex:1;display:flex;flex-direction:column;gap:10px}
+.ucl-desc{font-size:13px;color:var(--muted);line-height:1.6;flex:1}
+.ucl-output{font-size:12px;color:var(--text);background:var(--off);border-radius:var(--r4);padding:8px 10px;border-left:3px solid var(--border)}
+.ucl-output strong{font-weight:700;color:var(--navy);display:block;margin-bottom:2px;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.ucl-card-foot{padding:10px 18px;border-top:1px solid var(--off2);display:flex;align-items:center;justify-content:space-between;background:var(--off)}
+.ucl-tool{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.ucl-impact{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:99px}
+.ucl-high{background:#dcfce7;color:#166534}
+.ucl-med{background:#fef3c7;color:#92400e}
+.ucl-count-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.ucl-count{font-size:13px;color:var(--muted)}
+.ucl-count strong{color:var(--text);font-weight:700}
+
 </style>
 </head>
 <body>
@@ -679,6 +713,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
         </li>
 
         <!-- Certifications standalone -->
+        <li><a href="#usecases" class="nav-standalone">Use Cases</a></li>
         <li><a href="#certs" class="nav-standalone">Certifications</a></li>
 
         <!-- Roadmap standalone -->
@@ -1414,6 +1449,621 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
   </div>
 </section>
 
+
+<!-- ════════ USE CASE LIBRARY ════════ -->
+<section id="usecases" aria-labelledby="ucl-h" style="background:var(--off)">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-eye" style="color:#6366f1">Use Case Library</div>
+      <h2 class="s-title" id="ucl-h">AI use cases for your role</h2>
+      <p class="s-desc">Real, specific use cases mapped to your role — not generic art of the possible. Each card shows the task, expected output, and the exact AI tool to use. Filter by your role or browse all.</p>
+    </div>
+
+    <!-- Role filters -->
+    <div class="ucl-filter-row" role="group" aria-label="Filter by role">
+      <span class="ucl-label">Filter by role:</span>
+      <button class="ucl-btn ucl-active" data-persona="all" onclick="filterUCL('all',this)">All roles</button>
+      <button class="ucl-btn" data-persona="sales" onclick="filterUCL('sales',this)">💼 Sales</button>
+      <button class="ucl-btn" data-persona="contracts" onclick="filterUCL('contracts',this)">📄 Contracting</button>
+      <button class="ucl-btn" data-persona="pmo" onclick="filterUCL('pmo',this)">👥 PMO</button>
+      <button class="ucl-btn" data-persona="delivery-tech" onclick="filterUCL('delivery-tech',this)">💻 Delivery — Technical</button>
+      <button class="ucl-btn" data-persona="delivery-func" onclick="filterUCL('delivery-func',this)">⚙️ Delivery — Functional</button>
+      <button class="ucl-btn" data-persona="leadership" onclick="filterUCL('leadership',this)">🏢 Account Leadership</button>
+    </div>
+
+    <div class="ucl-count-bar">
+      <span class="ucl-count">Showing <strong id="ucl-count">32</strong> use cases</span>
+    </div>
+
+    <div class="ucl-grid" id="ucl-grid">
+
+      <!-- ══ SALES (6) ══ -->
+      <div class="ucl-card" data-persona="sales">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#e0f2fe">🧮</div>
+          <div>
+            <div class="ucl-card-title">Pricing model builder</div>
+            <span class="ucl-persona-tag" style="background:#e0f2fe;color:#0c4a6e">💼 Sales</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Paste a client requirements doc — Copilot extracts scope, recommends rate card, flags risk items, and drafts a pricing summary ready for review.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Structured pricing table with scope assumptions, rate card mapping, risk flags, and exec summary — ready to paste into a proposal.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Excel + Word</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="sales">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#e0f2fe">📋</div>
+          <div>
+            <div class="ucl-card-title">RFP response accelerator</div>
+            <span class="ucl-persona-tag" style="background:#e0f2fe;color:#0c4a6e">💼 Sales</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Upload the RFP. A Copilot Studio agent maps each question to existing proposal content, drafts answers, and highlights gaps needing human input.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Draft RFP response with answers pre-filled from your proposal library, gaps clearly marked, and a completion checklist.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + SharePoint knowledge</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="sales">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#e0f2fe">🔍</div>
+          <div>
+            <div class="ucl-card-title">Competitive intelligence brief</div>
+            <span class="ucl-persona-tag" style="background:#e0f2fe;color:#0c4a6e">💼 Sales</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Ask Copilot to summarise latest competitor moves, pricing changes, and win/loss patterns from news, earnings calls, and Battlecard documents.</p>
+          <div class="ucl-output"><strong>Expected output</strong>One-page competitive brief with recent moves, pricing signals, differentiators, and suggested counter-positioning talking points.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot + Bing integration</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="sales">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#e0f2fe">🖥️</div>
+          <div>
+            <div class="ucl-card-title">Client proposal deck</div>
+            <span class="ucl-persona-tag" style="background:#e0f2fe;color:#0c4a6e">💼 Sales</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Describe the deal in plain language — Copilot drafts a tailored PowerPoint with exec summary, value proposition, pricing table, and next steps.</p>
+          <div class="ucl-output"><strong>Expected output</strong>10-slide proposal deck with client-specific talking points, pricing, and a clear call to action — ready for final review.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in PowerPoint</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="sales">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#e0f2fe">📧</div>
+          <div>
+            <div class="ucl-card-title">Deal follow-up email drafter</div>
+            <span class="ucl-persona-tag" style="background:#e0f2fe;color:#0c4a6e">💼 Sales</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">After a client call, Copilot reads the Teams transcript and drafts a personalised follow-up email with action items and pricing recap — sent in minutes, not hours.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Professional follow-up email with meeting recap, agreed actions, owner names, due dates, and next steps — ready to send or lightly edit.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Outlook + Teams</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="sales">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#e0f2fe">📊</div>
+          <div>
+            <div class="ucl-card-title">Discount scenario modelling</div>
+            <span class="ucl-persona-tag" style="background:#e0f2fe;color:#0c4a6e">💼 Sales</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Prompt Copilot with margin thresholds — it generates a scenario table showing impact of 5%, 10%, 15% discount options on gross profit and revenue.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Excel scenario table with three discount levels, GP impact, revenue delta, and a recommended position based on your floor margin.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Excel</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <!-- ══ CONTRACTING (6) ══ -->
+      <div class="ucl-card" data-persona="contracts">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fef3c7">⚠️</div>
+          <div>
+            <div class="ucl-card-title">Contract risk scanner</div>
+            <span class="ucl-persona-tag" style="background:#fef3c7;color:#78350f">📄 Contracting</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Upload a contract PDF. The agent highlights non-standard clauses, unusual liability caps, missing SLA definitions, and jurisdiction risks against your standard template.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Risk report with clause-by-clause comparison, RAG ratings, deviation from standard, and recommended redlines — ready for legal review.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + Azure AI Search (RAG)</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="contracts">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fef3c7">✏️</div>
+          <div>
+            <div class="ucl-card-title">Clause drafting assistant</div>
+            <span class="ucl-persona-tag" style="background:#fef3c7;color:#78350f">📄 Contracting</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Describe what a clause needs to achieve — the agent drafts standard-aligned language, explains trade-offs, and suggests alternatives at different risk levels.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Three clause variants (conservative, balanced, client-friendly) with a plain-English explanation of what each one trades off.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Word</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="contracts">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fef3c7">🔄</div>
+          <div>
+            <div class="ucl-card-title">Contract version comparison</div>
+            <span class="ucl-persona-tag" style="background:#fef3c7;color:#78350f">📄 Contracting</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Upload v1 and v2 of a contract. Copilot produces a plain-English summary of every change, flagging which changes are material and which are cosmetic.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Change log table with section reference, original text, new text, materiality rating, and recommended action (accept / query / reject).</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Word</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="contracts">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fef3c7">✅</div>
+          <div>
+            <div class="ucl-card-title">Compliance checklist generator</div>
+            <span class="ucl-persona-tag" style="background:#fef3c7;color:#78350f">📄 Contracting</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Paste a regulatory framework (GDPR, DPDP, SOC2). The agent produces a contract review checklist specific to that regulation and jurisdiction.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Checklist of 15-25 specific items to verify in the contract, with clause references, pass/fail criteria, and remediation notes for each.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + regulation knowledge base</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="contracts">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fef3c7">📝</div>
+          <div>
+            <div class="ucl-card-title">Negotiation briefing note</div>
+            <span class="ucl-persona-tag" style="background:#fef3c7;color:#78350f">📄 Contracting</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Before a negotiation call, Copilot summarises open points, walk-away positions, and the other party's likely priorities based on prior correspondence.</p>
+          <div class="ucl-output"><strong>Expected output</strong>One-page negotiation brief: open items, our position, their likely position, concessions we can offer, and our walk-away threshold.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Teams + Outlook</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="contracts">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fef3c7">💬</div>
+          <div>
+            <div class="ucl-card-title">Contract Q&amp;A chatbot</div>
+            <span class="ucl-persona-tag" style="background:#fef3c7;color:#78350f">📄 Contracting</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">A Copilot Studio agent trained on your signed contract library. Team members ask "what is the SLA for client X?" and get an instant, cited answer from the contract.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Instant natural-language answer with the source contract clause quoted, available 24/7 in Teams without searching through PDFs.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + SharePoint knowledge</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <!-- ══ PMO (6) ══ -->
+      <div class="ucl-card" data-persona="pmo">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#d1fae5">👤</div>
+          <div>
+            <div class="ucl-card-title">Onboarding request agent</div>
+            <span class="ucl-persona-tag" style="background:#d1fae5;color:#064e3b">👥 PMO</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">A Teams chatbot collects joiner details, triggers the AD ID creation flow, sends the welcome email, and tracks task completion — all without manual PMO intervention.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Fully automated onboarding with AD ID created, welcome pack sent, access provisioned, and completion status visible in one dashboard.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + Power Automate + Entra ID</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="pmo">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#d1fae5">🚪</div>
+          <div>
+            <div class="ucl-card-title">Offboarding checklist agent</div>
+            <span class="ucl-persona-tag" style="background:#d1fae5;color:#064e3b">👥 PMO</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Triggered by a leaver request, the agent generates a role-specific checklist, assigns tasks to IT and HR, tracks completion, and confirms account deactivation.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Role-specific offboarding checklist auto-assigned to owners, with completion tracking and audit trail — zero manual coordination.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + Power Automate</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="pmo">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#d1fae5">🔑</div>
+          <div>
+            <div class="ucl-card-title">AD ID extension self-service</div>
+            <span class="ucl-persona-tag" style="background:#d1fae5;color:#064e3b">👥 PMO</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Resource submits an extension request via Teams. Agent validates, routes to manager for approval, and on approval extends the account automatically — no email chain.</p>
+          <div class="ucl-output"><strong>Expected output</strong>AD ID extended, approval recorded, requester and manager notified, all within the Teams interface — no PMO manual action required.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + Entra ID + Approval flow</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="pmo">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#d1fae5">📈</div>
+          <div>
+            <div class="ucl-card-title">Resource status dashboard bot</div>
+            <span class="ucl-persona-tag" style="background:#d1fae5;color:#064e3b">👥 PMO</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Ask "how many resources are due for offboarding this month?" or "which AD IDs expire in 30 days?" — instant answers from live SharePoint data, no report needed.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Natural language answers with counts, names, and dates — pulled live from SharePoint lists without generating a manual report.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + SharePoint</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="pmo">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#d1fae5">⏰</div>
+          <div>
+            <div class="ucl-card-title">SLA breach auto-chaser</div>
+            <span class="ucl-persona-tag" style="background:#d1fae5;color:#064e3b">👥 PMO</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Pending requests older than the SLA threshold automatically trigger a Teams nudge to the approver. No manual chasing from the PMO team — ever.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Automatic Teams message to the approver with request details and a one-click approve button — triggered at SLA breach with no human involvement.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 Power Automate + Teams + Copilot Studio</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="pmo">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#d1fae5">❓</div>
+          <div>
+            <div class="ucl-card-title">PMO policy FAQ bot</div>
+            <span class="ucl-persona-tag" style="background:#d1fae5;color:#064e3b">👥 PMO</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">"What is the notice period for offboarding a contractor?" A Copilot Studio agent answers PMO process questions from the policy docs, available 24/7 in Teams.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Instant cited answer from the policy document, with the relevant section quoted — no need to search policy docs or ask a colleague.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + SharePoint knowledge</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <!-- ══ DELIVERY TECHNICAL (4) ══ -->
+      <div class="ucl-card" data-persona="delivery-tech">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#ede9fe">💻</div>
+          <div>
+            <div class="ucl-card-title">Code review &amp; explanation</div>
+            <span class="ucl-persona-tag" style="background:#ede9fe;color:#3b0764">💻 Delivery — Technical</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Paste a code block — GitHub Copilot explains what it does, flags security issues, suggests performance improvements, and adds inline documentation.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Annotated code with plain-English explanation, security flags, performance suggestions, and doc comments added — ready for team review.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">💻 GitHub Copilot in VS Code</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="delivery-tech">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#ede9fe">🐛</div>
+          <div>
+            <div class="ucl-card-title">Debugging accelerator</div>
+            <span class="ucl-persona-tag" style="background:#ede9fe;color:#3b0764">💻 Delivery — Technical</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Paste error logs and stack traces. The AI identifies the root cause, explains it in plain English, and suggests a fix with code. Cuts debug time by 60-70% on complex issues.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Root cause identified, plain-English explanation, corrected code snippet, and a note on how to prevent the same error in future.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">💻 GitHub Copilot + Claude Code</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="delivery-tech">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#ede9fe">🧪</div>
+          <div>
+            <div class="ucl-card-title">Unit test generation</div>
+            <span class="ucl-persona-tag" style="background:#ede9fe;color:#3b0764">💻 Delivery — Technical</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Select a function — Copilot generates a full unit test suite covering happy path, edge cases, and error conditions. Reduces test-writing time by up to 80%.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Complete test file with happy path, edge cases, boundary conditions, and error scenarios — matching your team's testing framework.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">💻 GitHub Copilot in VS Code / JetBrains</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="delivery-tech">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#ede9fe">🏗️</div>
+          <div>
+            <div class="ucl-card-title">Architecture decision record (ADR)</div>
+            <span class="ucl-persona-tag" style="background:#ede9fe;color:#3b0764">💻 Delivery — Technical</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Describe a design decision in plain English — Azure AI Foundry generates a structured ADR with context, options, trade-offs, and decision rationale in your template.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Structured ADR doc with context, decision drivers, options considered, pros/cons, and the decision — ready for team review and sign-off.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🔬 Azure AI Foundry + Claude / GPT-4o</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <!-- ══ DELIVERY FUNCTIONAL (4) ══ -->
+      <div class="ucl-card" data-persona="delivery-func">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fce7f3">📋</div>
+          <div>
+            <div class="ucl-card-title">Requirements extraction</div>
+            <span class="ucl-persona-tag" style="background:#fce7f3;color:#500724">⚙️ Delivery — Functional</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Upload a BRD or workshop transcript. Copilot extracts user stories in structured format with acceptance criteria, gaps flagged, and ambiguities highlighted.</p>
+          <div class="ucl-output"><strong>Expected output</strong>User story list in "As a / I want / so that" format with acceptance criteria, dependencies, and a gap list — ready for backlog import.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Word</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="delivery-func">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fce7f3">🧪</div>
+          <div>
+            <div class="ucl-card-title">Test case generator</div>
+            <span class="ucl-persona-tag" style="background:#fce7f3;color:#500724">⚙️ Delivery — Functional</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Paste a user story — the agent generates a test plan with positive, negative, and edge-case scenarios in your format, ready for import into Azure DevOps or Jira.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Full test case table with test ID, description, steps, expected result, and pass/fail criteria — importable into your test management tool.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio or M365 Copilot</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="delivery-func">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fce7f3">📖</div>
+          <div>
+            <div class="ucl-card-title">Process documentation writer</div>
+            <span class="ucl-persona-tag" style="background:#fce7f3;color:#500724">⚙️ Delivery — Functional</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Walk through a process in a Teams meeting. Copilot produces a structured process document with roles, steps, decision points, and exceptions from the transcript.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Process doc with RACI, step-by-step flow, decision points, exception handling, and a process map summary — from a 30-min meeting transcript.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Teams</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="delivery-func">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#fce7f3">✉️</div>
+          <div>
+            <div class="ucl-card-title">Client status update drafter</div>
+            <span class="ucl-persona-tag" style="background:#fce7f3;color:#500724">⚙️ Delivery — Functional</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Paste the sprint log or project tracker update — Copilot rewrites it as a client-friendly status update: clear language, no jargon, RAG status, and next steps.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Client-ready status email with RAG rating, accomplishments this period, risks, and next steps — professional tone with no internal jargon.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Outlook</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <!-- ══ LEADERSHIP (6) ══ -->
+      <div class="ucl-card" data-persona="leadership">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#eef2ff">🎯</div>
+          <div>
+            <div class="ucl-card-title">Executive briefing builder</div>
+            <span class="ucl-persona-tag" style="background:#eef2ff;color:#1e1b4b">🏢 Account Leadership</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Before a C-suite client meeting, Copilot summarises all recent project updates, open risks, commercial positions, and action items into a one-page executive brief.</p>
+          <div class="ucl-output"><strong>Expected output</strong>One-page brief with project health, open risks, commercial status, and key talking points — pulled from Teams, email, and SharePoint in under 2 minutes.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot across Teams, Email + SharePoint</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="leadership">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#eef2ff">📰</div>
+          <div>
+            <div class="ucl-card-title">Client intelligence digest</div>
+            <span class="ucl-persona-tag" style="background:#eef2ff;color:#1e1b4b">🏢 Account Leadership</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">A morning summary of the client's latest news, earnings signals, industry moves, and regulatory changes — every client conversation informed by current context.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Daily digest with top 5 client/industry news items, relevance to your account, and suggested conversation starters — delivered to Teams each morning.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🔍 Perplexity + M365 Copilot with Bing</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="leadership">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#eef2ff">🛡️</div>
+          <div>
+            <div class="ucl-card-title">Risk &amp; escalation radar</div>
+            <span class="ucl-persona-tag" style="background:#eef2ff;color:#1e1b4b">🏢 Account Leadership</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">A Copilot Studio agent monitors project status reports across all workstreams, surfaces RAG-red items or trends towards risk, and sends a weekly leadership summary.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Weekly risk summary with RAG status per workstream, trending risks, and suggested leadership actions — delivered every Monday morning.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🤖 Copilot Studio + SharePoint + Power Automate</span>
+          <span class="ucl-impact ucl-high">High impact</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="leadership">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#eef2ff">📈</div>
+          <div>
+            <div class="ucl-card-title">Account growth opportunity mapper</div>
+            <span class="ucl-persona-tag" style="background:#eef2ff;color:#1e1b4b">🏢 Account Leadership</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Upload the account plan and recent client conversations — Copilot identifies whitespace, matches to service offerings, and drafts talking points for the growth conversation.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Growth opportunity map with 3-5 whitespace areas, matched service capabilities, business case bullets, and ready-to-use talking points.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Word + PowerPoint</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="leadership">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#eef2ff">✅</div>
+          <div>
+            <div class="ucl-card-title">Meeting action item tracker</div>
+            <span class="ucl-persona-tag" style="background:#eef2ff;color:#1e1b4b">🏢 Account Leadership</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">After every client meeting, Copilot extracts action items from the Teams transcript, assigns owners, sets due dates, and posts to the shared project tracker automatically.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Action log posted to the shared tracker with owner, due date, and status — within 5 minutes of the meeting ending, no manual note-taking.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot in Teams</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+      <div class="ucl-card" data-persona="leadership">
+        <div class="ucl-card-top">
+          <div class="ucl-icon" style="background:#eef2ff">⭐</div>
+          <div>
+            <div class="ucl-card-title">CSAT &amp; sentiment analyser</div>
+            <span class="ucl-persona-tag" style="background:#eef2ff;color:#1e1b4b">🏢 Account Leadership</span>
+          </div>
+        </div>
+        <div class="ucl-card-body">
+          <p class="ucl-desc">Paste client emails, survey responses, and meeting notes. Copilot extracts sentiment trends, recurring themes, and relationship health signals for QBR preparation.</p>
+          <div class="ucl-output"><strong>Expected output</strong>Sentiment dashboard with trend over time, recurring themes (positive and negative), relationship health score, and recommended focus areas for the QBR.</div>
+        </div>
+        <div class="ucl-card-foot">
+          <span class="ucl-tool">🪟 M365 Copilot + Azure AI Foundry</span>
+          <span class="ucl-impact ucl-med">Medium</span>
+        </div>
+      </div>
+
+    </div><!-- end ucl-grid -->
+  </div>
+</section>
+
+
 <!-- ════════ JOURNEY / ROADMAP ════════ -->
 <section id="journey" aria-labelledby="journey-h" style="background:var(--off)">
   <div class="wrap">
@@ -1519,6 +2169,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
           <li><a href="#overview">GitHub Copilot</a></li>
           <li><a href="#overview">Perplexity</a></li>
           <li><a href="#overview">When to use which</a></li>
+          <li><a href="#usecases">Use case library</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1878,6 +2529,21 @@ function showGuideTab(tab) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeGuide();
 });
+
+
+function filterUCL(persona, btn) {
+  document.querySelectorAll('.ucl-btn').forEach(function(b) { b.classList.remove('ucl-active'); });
+  if (btn) btn.classList.add('ucl-active');
+  var cards = document.querySelectorAll('.ucl-card[data-persona]');
+  var visible = 0;
+  cards.forEach(function(c) {
+    var show = persona === 'all' || c.dataset.persona === persona;
+    c.classList.toggle('ucl-hidden', !show);
+    if (show) visible++;
+  });
+  var countEl = document.getElementById('ucl-count');
+  if (countEl) countEl.textContent = visible;
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   initModal();
