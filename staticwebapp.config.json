@@ -1,21 +1,35 @@
 {
   "routes": [
     {
+      "route": "/ai-360/login.html",
+      "serve": "/ai-360/login.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/ai-360/register.html",
+      "serve": "/ai-360/register.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/ai-360/ai-tools.html",
+      "serve": "/ai-360/ai-tools.html",
+      "statusCode": 200
+    },
+    {
       "route": "/",
       "redirect": "/ai-360",
       "statusCode": 301
     },
     {
       "route": "/ai-360",
-      "serve": "/index.html",
-      "statusCode": 200
-    },
-    {
-      "route": "/ai-360/*",
-      "serve": "/index.html",
+      "serve": "/ai-360/index.html",
       "statusCode": 200
     }
   ],
+  "navigationFallback": {
+    "rewrite": "/ai-360/index.html",
+    "exclude": ["/ai-360/login.html", "/ai-360/register.html", "/ai-360/ai-tools.html", "*.{css,scss,js,png,gif,ico,jpg,svg}"]
+  },
   "auth": {
     "identityProviders": {
       "azureActiveDirectory": {
@@ -39,12 +53,9 @@
       }
     }
   },
-  "navigationFallback": {
-    "rewrite": "/index.html"
-  },
   "responseOverrides": {
     "404": {
-      "rewrite": "/index.html",
+      "rewrite": "/ai-360/index.html",
       "statusCode": 200
     }
   },
