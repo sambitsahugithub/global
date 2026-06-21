@@ -737,11 +737,6 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
     </nav>
 
     <div class="hdr-right">
-      <a href="login.html" class="hdr-ghost" style="display:inline-flex;align-items:center;gap:7px">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        Sign In
-      </a>
-      <button onclick="openGuide()" title="User Guide" aria-label="Open user guide" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:none;background:none;color:#8fa8c0;cursor:pointer;transition:all .15s;font-family:inherit;flex-shrink:0" onmouseover="this.style.background='#f0f4f8';this.style.color='#0f6fff'" onmouseout="this.style.background='transparent';this.style.color='#8fa8c0'"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button>
       <a href="https://copilotstudio.microsoft.com" target="_blank" rel="noopener" class="hdr-ghost" style="display:inline-flex;align-items:center;gap:7px"><svg width="16" height="16" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
   <rect x="0" y="0" width="10" height="10" fill="#f25022"/>
   <rect x="11" y="0" width="10" height="10" fill="#7fba00"/>
@@ -752,6 +747,32 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
   <defs><linearGradient id="az-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0078d4"/><stop offset="100%" stop-color="#50e6ff"/></linearGradient></defs>
   <path d="M9 1L1 16h5l3-5 3 5h5L9 1z" fill="url(#az-g)"/>
 </svg>AI Foundry ↗</a>
+      
+      <!-- User Profile / Sign In -->
+      <div id="userSection" style="margin-left:auto">
+        <a href="login.html" id="signInBtn" class="hdr-ghost" style="display:inline-flex;align-items:center;gap:7px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Sign In
+        </a>
+        <div id="userProfile" style="display:none;position:relative">
+          <button onclick="toggleUserMenu()" class="hdr-ghost" style="display:inline-flex;align-items:center;gap:7px;cursor:pointer;background:none;border:1.5px solid var(--border);font-family:inherit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span id="userName">User</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div id="userMenu" style="display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--white);border:1px solid var(--border);border-radius:var(--r4);box-shadow:var(--sh2);min-width:200px;z-index:1000">
+            <div style="padding:12px;border-bottom:1px solid var(--border)">
+              <div style="font-size:12px;font-weight:600;color:var(--text)" id="userEmail">Loading...</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px" id="userProvider">Provider</div>
+            </div>
+            <a href="/.auth/logout?post_logout_redirect_uri=/ai-360/login.html" style="display:block;padding:10px 12px;font-size:13px;color:var(--text);text-decoration:none;transition:background .15s" onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background='transparent'">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              Sign Out
+            </a>
+          </div>
+        </div>
+      </div>
+      <button onclick="openGuide()" title="User Guide" aria-label="Open user guide" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:none;background:none;color:#8fa8c0;cursor:pointer;transition:all .15s;font-family:inherit;flex-shrink:0" onmouseover="this.style.background='#f0f4f8';this.style.color='#0f6fff'" onmouseout="this.style.background='transparent';this.style.color='#8fa8c0'"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button>
       <a href="https://aws.amazon.com/bedrock/" target="_blank" rel="noopener" class="hdr-cta" style="background:var(--navy);color:var(--aws);display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--aws)"><svg width="28" height="16" viewBox="0 0 60 35" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
   <text x="0" y="24" font-size="26" font-weight="900" font-family="Arial,sans-serif" fill="#ff9900" letter-spacing="-1">AWS</text>
   <path d="M8 28 Q30 38 52 28" fill="none" stroke="#ff9900" stroke-width="3.5" stroke-linecap="round"/>
@@ -2676,6 +2697,73 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
+
+<script>
+// User Authentication Detection
+function toggleUserMenu() {
+  var menu = document.getElementById('userMenu');
+  if (menu) {
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  }
+}
+
+// Close user menu when clicking outside
+document.addEventListener('click', function(event) {
+  var userProfile = document.getElementById('userProfile');
+  var userMenu = document.getElementById('userMenu');
+  if (userProfile && userMenu && !userProfile.contains(event.target)) {
+    userMenu.style.display = 'none';
+  }
+});
+
+// Check if user is authenticated
+fetch('/.auth/me')
+  .then(response => response.json())
+  .then(data => {
+    var signInBtn = document.getElementById('signInBtn');
+    var userProfile = document.getElementById('userProfile');
+    var userName = document.getElementById('userName');
+    var userEmail = document.getElementById('userEmail');
+    var userProvider = document.getElementById('userProvider');
+    
+    if (data.clientPrincipal && data.clientPrincipal.userId) {
+      // User is authenticated
+      var user = data.clientPrincipal;
+      var displayName = user.userDetails || user.userId;
+      var provider = user.identityProvider || 'Unknown';
+      
+      // Hide Sign In button, show user profile
+      if (signInBtn) signInBtn.style.display = 'none';
+      if (userProfile) userProfile.style.display = 'block';
+      
+      // Update user info
+      if (userName) userName.textContent = displayName.split('@')[0] || 'User';
+      if (userEmail) userEmail.textContent = displayName;
+      if (userProvider) userProvider.textContent = 'Signed in with ' + provider.charAt(0).toUpperCase() + provider.slice(1);
+      
+      // Track login with Microsoft Clarity
+      if (window.clarity) {
+        clarity('set', 'userId', user.userId);
+        clarity('set', 'loginProvider', provider);
+        clarity('set', 'loginTime', new Date().toISOString());
+      }
+      
+      console.log('User authenticated:', user);
+    } else {
+      // User is not authenticated - keep Sign In button visible
+      if (signInBtn) signInBtn.style.display = 'inline-flex';
+      if (userProfile) userProfile.style.display = 'none';
+    }
+  })
+  .catch(error => {
+    console.error('Authentication check failed:', error);
+    // On error, show Sign In button
+    var signInBtn = document.getElementById('signInBtn');
+    var userProfile = document.getElementById('userProfile');
+    if (signInBtn) signInBtn.style.display = 'inline-flex';
+    if (userProfile) userProfile.style.display = 'none';
+  });
+</script>
 
 </body>
 </html>
