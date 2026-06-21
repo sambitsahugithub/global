@@ -670,8 +670,18 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
         <!-- Overview standalone -->
         <li><a href="#overview" class="nav-standalone">Overview</a></li>
 
-        <!-- AI Tools standalone -->
-        <li><a href="ai-tools.html" class="nav-standalone">AI Tools</a></li>
+        <!-- AI Tools group -->
+        <li>
+          <button class="nav-group-label" onclick="toggleDropdown(this)" aria-expanded="false" aria-haspopup="true">
+            <span class="group-dot" style="background:var(--purple)"></span>
+            AI Tools
+            <span class="arrow">▼</span>
+          </button>
+          <div class="nav-dropdown" role="menu">
+            <div class="nav-dropdown-header">AI Tools</div>
+            <a href="ai-tools.html"><span class="nav-ico">🤖</span><div><span class="nav-lbl">Tools Landscape</span><span class="nav-hint">Compare 6 major AI tools</span></div></a>
+          </div>
+        </li>
 
         <!-- Microsoft group -->
         <li>
