@@ -1,6 +1,14 @@
 {
   "routes": [
     {
+      "route": "/.auth/login/google/callback",
+      "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
+      "route": "/.auth/login/github/callback",
+      "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
       "route": "/ai-360/login.html",
       "serve": "/ai-360/login.html",
       "statusCode": 200
@@ -34,7 +42,7 @@
   ],
   "navigationFallback": {
     "rewrite": "/ai-360/index.html",
-    "exclude": ["/ai-360/login.html", "/ai-360/register.html", "/ai-360/ai-tools.html", "*.{css,scss,js,png,gif,ico,jpg,svg}"]
+    "exclude": ["/ai-360/login.html", "/ai-360/register.html", "/ai-360/ai-tools.html", "/.auth/*", "*.{css,scss,js,png,gif,ico,jpg,svg}"]
   },
   "auth": {
     "identityProviders": {
