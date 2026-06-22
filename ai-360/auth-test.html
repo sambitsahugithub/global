@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Auth Debug - AI 360</title>
+<style>
+body{font-family:system-ui,sans-serif;padding:40px;max-width:900px;margin:0 auto;background:#f5f5f5}
+.section{background:#fff;padding:20px;margin-bottom:20px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+h1{color:#0078d4;margin-top:0}
+h2{color:#333;font-size:18px;margin-top:0;padding-bottom:10px;border-bottom:2px solid #0078d4}
+pre{background:#f0f0f0;padding:15px;border-radius:4px;overflow-x:auto;font-size:13px}
+.test-btn{display:inline-block;padding:12px 24px;margin:10px 10px 10px 0;background:#0078d4;color:#fff;text-decoration:none;border-radius:4px;font-weight:600}
+.test-btn:hover{background:#005a9e}
+.status{padding:10px;margin:10px 0;border-radius:4px;font-weight:600}
+.success{background:#d4edda;color:#155724;border:1px solid #c3e6cb}
+.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
+.info{background:#d1ecf1;color:#0c5460;border:1px solid #bee5eb}
+code{background:#f0f0f0;padding:2px 6px;border-radius:3px;font-size:13px}
+</style>
+</head>
+<body>
+
+<h1>🔍 Azure Static Web Apps Authentication Debug Tool</h1>
+
+<div class="section">
+  <h2>1. Check Authentication Status</h2>
+  <p>Current authentication state:</p>
+  <div id="authStatus" class="status info">Loading...</div>
+  <pre id="authData">Checking...</pre>
+</div>
+
+<div class="section">
+  <h2>2. Test Login Links</h2>
+  <p>Click these to test authentication flows:</p>
+  <a href="/.auth/login/google?post_login_redirect_uri=/ai-360/auth-test.html" class="test-btn">🔵 Test Google Login</a>
+  <a href="/.auth/login/github?post_login_redirect_uri=/ai-360/auth-test.html" class="test-btn">⚫ Test GitHub Login</a>
+  <a href="/.auth/logout?post_logout_redirect_uri=/ai-360/auth-test.html" class="test-btn" style="background:#dc3545">🚪 Logout</a>
+</div>
+
+<div class="section">
+  <h2>3. Configuration Check</h2>
+  <p>Expected configuration values:</p>
+  <div class="info" style="padding:15px">
+    <strong>Google OAuth:</strong><br>
+    • Callback URL: <code>https://www.sambits.tech/.auth/login/google/callback</code><br>
+    • Client ID should start with: <code>502855093933-...</code><br>
+    • Scopes: openid, profile, email<br><br>
+    
+    <strong>Azure Configuration Names:</strong><br>
+    • <code>GOOGLE_CLIENT_ID</code><br>
+    • <code>GOOGLE_CLIENT_SECRET</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>4. Common Issues</h2>
+  <ul>
+    <li><strong>Redirect to login page:</strong> OAuth credentials not configured or incorrect in Azure</li>
+    <li><strong>Redirect to /lander:</strong> Callback URL mismatch or missing in Google Console</li>
+    <li><strong>Access denied:</strong> OAuth consent screen in "Testing" mode without test users</li>
+    <li><strong>Invalid client:</strong> Client ID/Secret mismatch</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>5. Debug Information</h2>
+  <p>Current URL: <code id="currentUrl"></code></p>
+  <p>Referrer: <code id="referrer"></code></p>
+  <p>Timestamp: <code id="timestamp"></code></p>
+</div>
+
+<script>
+// Display current page info
+document.getElementById('currentUrl').textContent = window.location.href;
+document.getElementById('referrer').textContent = document.referrer || 'None';
+document.getElementById('timestamp').textContent = new Date().toISOString();
+
+// Check authentication status
+fetch('/.auth/me')
+  .then(response => response.json())
+  .then(data => {
+    const statusDiv = document.getElementById('authStatus');
+    const authDataPre = document.getElementById('authData');
+    
+    if (data.clientPrincipal && data.clientPrincipal.userId) {
+      statusDiv.className = 'status success';
+      statusDiv.textContent = '✅ Authenticated';
+      authDataPre.textContent = JSON.stringify(data, null, 2);
+      
+      console.log('✅ Authentication successful:', data);
+    } else {
+      statusDiv.className = 'status error';
+      statusDiv.textContent = '❌ Not Authenticated';
+      authDataPre.textContent = JSON.stringify(data, null, 2);
+      
+      console.log('❌ Not authenticated');
+    }
+  })
+  .catch(error => {
+    const statusDiv = document.getElementById('authStatus');
+    const authDataPre = document.getElementById('authData');
+    
+    statusDiv.className = 'status error';
+    statusDiv.textContent = '⚠️ Error checking auth status';
+    authDataPre.textContent = 'Error: ' + error.message;
+    
+    console.error('Error checking auth:', error);
+  });
+
+// Log URL parameters for debugging
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.toString()) {
+  console.log('URL Parameters:', Object.fromEntries(urlParams));
+}
+</script>
+
+</body>
+</html>
