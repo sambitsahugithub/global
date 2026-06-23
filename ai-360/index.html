@@ -727,6 +727,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
     </nav>
 
     <div class="hdr-right">
+      <!-- External Links - Left Side -->
       <a href="https://copilotstudio.microsoft.com" target="_blank" rel="noopener" class="hdr-ghost" style="display:inline-flex;align-items:center;gap:7px"><svg width="16" height="16" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
   <rect x="0" y="0" width="10" height="10" fill="#f25022"/>
   <rect x="11" y="0" width="10" height="10" fill="#7fba00"/>
@@ -737,8 +738,13 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
   <defs><linearGradient id="az-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0078d4"/><stop offset="100%" stop-color="#50e6ff"/></linearGradient></defs>
   <path d="M9 1L1 16h5l3-5 3 5h5L9 1z" fill="url(#az-g)"/>
 </svg>AI Foundry ↗</a>
+      <a href="https://aws.amazon.com/bedrock/" target="_blank" rel="noopener" class="hdr-cta" style="background:var(--navy);color:var(--aws);display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--aws)"><svg width="28" height="16" viewBox="0 0 60 35" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
+  <text x="0" y="24" font-size="26" font-weight="900" font-family="Arial,sans-serif" fill="#ff9900" letter-spacing="-1">AWS</text>
+  <path d="M8 28 Q30 38 52 28" fill="none" stroke="#ff9900" stroke-width="3.5" stroke-linecap="round"/>
+  <polygon points="50,24 55,30 57,24" fill="#ff9900"/>
+</svg>Bedrock ↗</a>
       
-      <!-- User Profile / Sign In -->
+      <!-- User Profile / Sign In - Right Side -->
       <div id="userSection" style="margin-left:auto">
         <a href="login.html" id="signInBtn" class="hdr-ghost" style="display:inline-flex;align-items:center;gap:7px">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -750,24 +756,22 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 28px 24px
             <span id="userName">User</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
-          <div id="userMenu" style="display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--white);border:1px solid var(--border);border-radius:var(--r4);box-shadow:var(--sh2);min-width:200px;z-index:1000">
+          <div id="userMenu" style="display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--white);border:1px solid var(--border);border-radius:var(--r4);box-shadow:var(--sh2);min-width:220px;z-index:1000">
             <div style="padding:12px;border-bottom:1px solid var(--border)">
               <div style="font-size:12px;font-weight:600;color:var(--text)" id="userEmail">Loading...</div>
               <div style="font-size:11px;color:var(--muted);margin-top:2px" id="userProvider">Provider</div>
             </div>
-            <a href="/.auth/logout?post_logout_redirect_uri=/ai-360/login.html" style="display:block;padding:10px 12px;font-size:13px;color:var(--text);text-decoration:none;transition:background .15s" onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background='transparent'">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:8px"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <a href="#" onclick="openGuide();return false;" style="display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:13px;color:var(--text);text-decoration:none;transition:background .15s;border-bottom:1px solid var(--border)" onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background='transparent'">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Help & Guide
+            </a>
+            <a href="/.auth/logout?post_logout_redirect_uri=/ai-360/login.html" style="display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:13px;color:var(--text);text-decoration:none;transition:background .15s" onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background='transparent'">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
               Sign Out
             </a>
           </div>
         </div>
       </div>
-      <button onclick="openGuide()" title="User Guide" aria-label="Open user guide" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:none;background:none;color:#8fa8c0;cursor:pointer;transition:all .15s;font-family:inherit;flex-shrink:0" onmouseover="this.style.background='#f0f4f8';this.style.color='#0f6fff'" onmouseout="this.style.background='transparent';this.style.color='#8fa8c0'"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button>
-      <a href="https://aws.amazon.com/bedrock/" target="_blank" rel="noopener" class="hdr-cta" style="background:var(--navy);color:var(--aws);display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--aws)"><svg width="28" height="16" viewBox="0 0 60 35" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
-  <text x="0" y="24" font-size="26" font-weight="900" font-family="Arial,sans-serif" fill="#ff9900" letter-spacing="-1">AWS</text>
-  <path d="M8 28 Q30 38 52 28" fill="none" stroke="#ff9900" stroke-width="3.5" stroke-linecap="round"/>
-  <polygon points="50,24 55,30 57,24" fill="#ff9900"/>
-</svg>Bedrock ↗</a>
     </div>
   </div>
 </header>
